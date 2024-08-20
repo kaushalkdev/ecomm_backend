@@ -2,7 +2,7 @@
   "name": "ecom_app",
   "version": "1.0.0",
   "description": "A node based ecom web server",
-  "main": "app/index.js",
+  "main": "app/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
