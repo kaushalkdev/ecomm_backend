@@ -8,10 +8,14 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "nodemon"
+            ],
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/app/app.js"
+            "program": "${workspaceFolder}/src/app.js"
         }
     ]
 }
