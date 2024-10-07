@@ -23,9 +23,14 @@ async function find(query) {
     var products = await ProductModel.find(query);
     return products;
 }
+async function create(data) {
+    var product = new ProductModel(data);
+    await product.save();
+    return product;
+ }
+
+module.exports = { find ,create};
 
 
-exports = {
-    find
-}
+
 
