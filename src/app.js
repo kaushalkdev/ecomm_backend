@@ -5,6 +5,17 @@ const dbService = require('./database/db_connection');
 
 const app = express();
 
+// Check if required environment variables are set
+const requiredEnvVars = ['SERVER_PORT', 'DB_CONNECTION_STRING'];
+requiredEnvVars.forEach((varName) => {
+    if (!process.env[varName]) {
+        console.error(`*****************Error: Missing required environment variable ${varName}*****************`);
+        process.exit(1); // Exit the process with failure
+    } else {
+        console.log(`************** ENV Success: Found value : ${varName} **************`);
+    }
+});
+
 // Middleware for logging requests
 app.use((req, res, next) => {
     console.log('Request URL:', req.url);
@@ -15,7 +26,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 // Use product routes with version control
-app.use('/api/v1/products', productRoute.router);
+app.use(productRoute);
 
 /**
  * Start the server and connect to the database

@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Ecom dev",
             "runtimeExecutable": "npx",
             "runtimeArgs": [
                 "nodemon"
