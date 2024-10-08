@@ -1,18 +1,23 @@
-
 require("dotenv").config();
 const mongoose = require("mongoose");
 
-// creating client
+/**
+ * Connects to the MongoDB database using Mongoose.
+ * The MongoDB connection URL is retrieved from the environment variable MONGO_URL.
+ * Logs the connection status to the console.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the connection is successful.
+ * @throws Will throw an error if the connection fails.
+ */
 module.exports.connectClient = async function () {
-
     try {
-        let promise = await mongoose.connect(process.env.MONGO_URL);
-        console.log("connected to db | HOST:" + promise.connection.host);
+        const connection = await mongoose.connect(process.env.MONGO_URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log(`Connected to DB | HOST: ${connection.connection.host}`);
     } catch (error) {
-        console.log("error connecting to db", error);
-
+        console.error("Error connecting to DB", error);
+        process.exit(1); // Exit the process with failure
     }
-
 };
-
-

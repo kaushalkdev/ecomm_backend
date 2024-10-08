@@ -3,38 +3,35 @@ const express = require('express');
 const productRoute = require('./routes/product_route');
 const dbService = require('./database/db_connection');
 
-
-
 const app = express();
 
-app.use(logger);
+// Middleware for logging requests
+app.use((req, res, next) => {
+    console.log('Request URL:', req.url);
+    next();
+});
+
+// Middleware for parsing JSON bodies
 app.use(express.json());
 
+// Use product routes with version control
+app.use('/api/v1/products', productRoute.router);
 
-function logger(req, res, next) {
-    console.log('request url:', req.url);
-    next();
-}
+/**
+ * Start the server and connect to the database
+ */
+const startServer = async () => {
+    try {
+        await dbService.connectClient();
+        app.listen(process.env.SERVER_PORT, () => {
+            console.log(`Server started at port ${process.env.SERVER_PORT}`);
+            console.log('Connected to the database');
+        });
+    } catch (error) {
+        console.error('Database connection failure:', error);
+        process.exit(1); // Exit the process with failure
+    }
+};
 
-
-app.use(productRoute.router);
-
-
-
-
-dbService
-    .connectClient()
-    .then(() => {
-        app.listen(process.env.SERVER_PORT);
-        console.log("server started at port " + process.env.SERVER_PORT);
-        console.log("connected to db");
-        
-
-    })
-    .catch((_) => {
-        console.log("connection failure");
-    });
-
-
-
-
+// Start the server
+startServer();
