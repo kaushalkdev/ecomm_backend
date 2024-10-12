@@ -1,8 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const productRoute = require('./routes/product_route');
+const cartRoute = require('./routes/cart_route');
 const dbService = require('./database/db_connection');
 const consts = require('./const');
+const Cart = require('./models/cart_model');
 
 const app = express();
 
@@ -28,6 +30,7 @@ app.use(express.json());
 
 // Use product routes with version control
 app.use(consts.API_BASE_VERSION, productRoute);
+app.use(consts.API_BASE_VERSION, cartRoute);
 
 /**
  * Start the server and connect to the database
