@@ -1,10 +1,10 @@
 require('dotenv').config();
 const express = require('express');
-const productRoute = require('./routes/product_route');
-const cartRoute = require('./routes/cart_route');
-const dbService = require('./database/db_connection');
+const productRoute = require('./product/product_route');
+const cartRoute = require('./cart/cart_route');
+const dbService = require('./services/db_svcs');
 const consts = require('./const');
-const ordersRoute = require('./routes/orders_route');
+const ordersRoute = require('./orders/orders_route');
 
 
 const app = express();
