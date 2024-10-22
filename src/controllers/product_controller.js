@@ -15,7 +15,7 @@ exports.getProducts = async function (request, response) {
             numberOfProducts: products.length,
             result: products
         });
-        } catch (error) {
+    } catch (error) {
         console.error('Error fetching products:', error);
         response.status(500).json({
             status: 'error',
@@ -43,6 +43,44 @@ exports.createProduct = async function (request, response) {
         });
     } catch (error) {
         console.error('Error creating product:', error);
+        response.status(500).json({
+            status: 'error',
+            statusCode: 500,
+            message: 'Internal Server Error',
+            result: null
+        });
+    }
+}
+
+
+
+/**
+ * Delete a product
+ * @param {Object} request - Express request object
+ * @param {Object} response - Express response object
+ */
+exports.deleteProduct = async function (request, response) {
+    try {
+        const productId = request.body['id'];
+        const product = await model.remove(productId);
+
+        if (!product) {
+            return response.status(404).json({
+                status: 'error',
+                statusCode: 404,
+                message: 'Product not found',
+                result: null
+            });
+        }
+
+        response.status(200).json({
+            status: 'success',
+            statusCode: 200,
+            message: 'Product deleted successfully',
+            result: product
+        });
+    } catch (error) {
+        console.error('Error deleting product:', error);
         response.status(500).json({
             status: 'error',
             statusCode: 500,

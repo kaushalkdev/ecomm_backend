@@ -83,4 +83,22 @@ async function create(data) {
     }
 }
 
-module.exports = { find, create };
+/**
+ * Deletes a product by its ID.
+ * 
+ * @async
+ * @function remove
+ * @param {String} id - The ID of the product to delete.
+ * @returns {Promise<Object>} - A promise that resolves to the result of the deletion operation.
+ * @throws Will throw an error if there is an issue with deleting the product.
+ */
+async function remove(id) {
+    try {
+        return await ProductModel.findByIdAndDelete(id).exec();
+    } catch (error) {
+        console.error('Error deleting product:', error);
+        throw error;
+    }
+}
+
+module.exports = { find, create, remove };

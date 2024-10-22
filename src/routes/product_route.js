@@ -14,6 +14,14 @@ router.get('/products', productController.getProducts);
  * @description Create a new product
  * @access Public
  */
-router.post('/create', productController.createProduct);
+router.post('/products/create', productController.createProduct);
+
+
+/**
+ * @route GET /delete
+ * @description Delete a product
+ * @access Public
+ */
+router.post('/products/delete', productController.deleteProduct);
 
 module.exports = router;
