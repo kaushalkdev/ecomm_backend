@@ -15,20 +15,20 @@ router.get('/orders/:userId', ordersController.getOrdersByUserId);
  * @desc Create a new order
  * @access Public
  */
-router.post('/orders/', ordersController.createOrder);
+// router.post('/orders/', ordersController.createOrder);
 
-/**
- * @route PUT /orders/:orderId
- * @desc Update an existing order
- * @access Public
- */
-router.put('/orders/:orderId', ordersController.updateOrder);
+// /**
+//  * @route PUT /orders/:orderId
+//  * @desc Update an existing order
+//  * @access Public
+//  */
+// router.put('/orders/:orderId', ordersController.updateOrder);
 
-/**
- * @route DELETE /orders/:orderId
- * @desc Delete an order
- * @access Public
- */
-router.delete('orders/:orderId', ordersController.deleteOrder);
+// /**
+//  * @route DELETE /orders/:orderId
+//  * @desc Delete an order
+//  * @access Public
+//  */
+// router.delete('orders/:orderId', ordersController.deleteOrder);
 
 module.exports = router;

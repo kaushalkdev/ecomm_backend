@@ -1,4 +1,4 @@
-const CartService = require('../services/cart_service');
+const CartModel = require('../models/cart_model');
 
 /**
  * Cart Controller
@@ -15,7 +15,7 @@ class CartController {
     static async addItem(req, res) {
         try {
             const { userId, productId, quantity } = req.body;
-            const cart = await CartService.addItem(userId, productId, quantity);
+            const cart = await CartModel.addItem(userId, productId, quantity);
             res.status(200).json(cart);
         } catch (error) {
             res.status(500).json({ error: error.message });
@@ -30,7 +30,7 @@ class CartController {
     static async removeItem(req, res) {
         try {
             const { userId, productId } = req.body;
-            const cart = await CartService.removeItem(userId, productId);
+            const cart = await CartModel.removeItem(userId, productId);
             res.status(200).json(cart);
         } catch (error) {
             res.status(500).json({ error: error.message });
@@ -45,7 +45,7 @@ class CartController {
     static async getCart(req, res) {
         try {
             const { userId } = req.params;
-            const cart = await CartService.getCart(userId);
+            const cart = await CartModel.getCart(userId);
             res.status(200).json(cart);
         } catch (error) {
             res.status(500).json({ error: error.message });
@@ -60,7 +60,7 @@ class CartController {
     static async updateItemQuantity(req, res) {
         try {
             const { userId, productId, quantity } = req.body;
-            const cart = await CartService.updateItemQuantity(userId, productId, quantity);
+            const cart = await CartModel.updateItemQuantity(userId, productId, quantity);
             res.status(200).json(cart);
         } catch (error) {
             res.status(500).json({ error: error.message });

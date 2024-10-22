@@ -58,7 +58,7 @@ const cartSchema = new Schema({
  * @returns {Promise<Cart|null>} The cart associated with the user ID, or null if not found.
  * @throws {Error} If there is an error finding the cart.
  */
-cartSchema.statics.findCartByUserId = async function (userId) {
+cartSchema.findCartByUserId = async function (userId) {
     try {
         const cart = await this.findOne({ userId });
         return cart;
@@ -66,6 +66,7 @@ cartSchema.statics.findCartByUserId = async function (userId) {
         throw new Error('Error finding cart: ' + error.message);
     }
 };
+
 
 const Cart = mongoose.model('Cart', cartSchema);
 

@@ -1,4 +1,4 @@
-const Order = require('../models/order');
+const Order = require('../models/orders_model');
 
 // /Users/administrator/Desktop/Projects/node/ecomm_backend/src/controllers/orders_controller.js
 
