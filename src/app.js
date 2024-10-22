@@ -13,7 +13,7 @@ const app = express();
 const requiredEnvVars = ['SERVER_PORT', 'DB_CONNECTION_STRING'];
 requiredEnvVars.forEach((varName) => {
     if (!process.env[varName]) {
-        console.error(`*****************Error: Missing required environment variable ${varName}*****************`);
+        console.error(`*****************Error: Missing required environment variable ${varName} *****************`);
         process.exit(1); // Exit the process with failure
     } else {
         console.log(`************** ENV Success: Found value : ${varName} **************`);
