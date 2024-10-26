@@ -5,6 +5,7 @@ const cartRoute = require('./cart/cart_route');
 const dbService = require('./services/db_svcs');
 const consts = require('./const');
 const ordersRoute = require('./orders/orders_route');
+var cors = require('cors')
 
 
 const app = express();
@@ -19,6 +20,9 @@ requiredEnvVars.forEach((varName) => {
         console.log(`************** ENV Success: Found value : ${varName} **************`);
     }
 });
+
+
+app.use(cors());
 
 // Middleware for logging requests
 app.use((req, res, next) => {
