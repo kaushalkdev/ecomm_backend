@@ -64,6 +64,22 @@ async function find(query) {
     }
 }
 
+
+/**
+ * @async
+ * @param {String} id 
+ * @returns {Promise<Product>} 
+ */
+
+async function findById(id) {
+    try {
+        return await ProductModel.findById(id).exec();
+    } catch (error) {
+        console.error('Error finding products:', error);
+        throw error;
+    }
+}
+
 /**
  * Creates a new product.
  * 
@@ -101,4 +117,4 @@ async function remove(id) {
     }
 }
 
-module.exports = { find, create, remove };
+module.exports = { find, findById, create, remove };

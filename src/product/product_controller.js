@@ -11,7 +11,7 @@ exports.getProductWithId = async function (request, response) {
     try {
 
         const productId = request.body['id'];
-        const product = await model.remove(productId);
+        const product = await model.findById(productId);
 
         if (!product) {
             return response.status(404).json({
