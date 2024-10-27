@@ -21,7 +21,6 @@ requiredEnvVars.forEach((varName) => {
     }
 });
 
-
 app.use(cors());
 
 // Middleware for logging requests

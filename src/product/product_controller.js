@@ -1,6 +1,47 @@
 const model = require('./product_model');
 
 /**
+ * 
+ * @param {id} req 
+ * @param {} response 
+ * @returns  Product
+ */
+
+exports.getProductWithId = async function (request, response) {
+    try {
+
+        const productId = request.body['id'];
+        const product = await model.remove(productId);
+
+        if (!product) {
+            return response.status(404).json({
+                status: 'error',
+                statusCode: 404,
+                message: 'Product not found',
+                result: null
+            });
+        }
+
+        response.status(200).json({
+            status: 'success',
+            statusCode: 200,
+            message: 'Product found',
+            result: product
+        });
+
+
+    } catch (error) {
+        console.error('Error fetching product with id:', error);
+        response.status(500).json({
+            status: 'error',
+            statusCode: 500,
+            message: 'Internal Server Error',
+            result: {}
+        });
+    }
+}
+
+/**
  * Get all products
  * @param {Object} request - Express request object
  * @param {Object} response - Express response object

@@ -24,4 +24,12 @@ router.post('/products/create', productController.createProduct);
  */
 router.post('/products/delete', productController.deleteProduct);
 
+/**
+ * @route POST /details
+ * @description Finds a product and returns it else returns {}
+ * @access Public
+ */
+router.post('/products/details', productController.getProductWithId);
+
+
 module.exports = router;
