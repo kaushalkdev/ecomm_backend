@@ -1,6 +1,10 @@
 const Order = require('../orders/orders_model');
+const Razorpay = require('razorpay');
+const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET
+});
 
-// /Users/administrator/Desktop/Projects/node/ecomm_backend/src/controllers/orders_controller.js
 
 
 /**
@@ -37,7 +41,42 @@ const getOrdersByUserId = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+/**
+ * Create order api which calls the razor pay module to 
+ * make payment.
+ * @param {Object} req take amount 
+ * @param {Object} res succes and failure response
+ * @returns 
+ */
+const createOrder = async (req, res) => {
+    const { amount } = req.body;
+    try {
+        const options = {
+            amount: amount * 100, // Amount in paise
+            currency: "INR",
+            receipt: "order_rcptid_11"
+        };
+        const order = await razorpay.orders.create(options);
+        if (!order) {
+            return res.status(500).json({
+                message: 'Failed to create order'
+            });
+        }
+        res.status(200).json({
+            id: order.id,
+            currency: order.currency,
+            amount: order.amount
+        });
+    } catch (error) {
+        console.error('Error creating order:', error);
+        res.status(500).json({
+            message: 'Internal server error'
+        });
+    }
+};
+
 
 module.exports = {
-    getOrdersByUserId
+    getOrdersByUserId, createOrder
+
 };

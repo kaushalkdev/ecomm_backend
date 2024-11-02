@@ -15,7 +15,7 @@ router.get('/orders/:userId', ordersController.getOrdersByUserId);
  * @desc Create a new order
  * @access Public
  */
-// router.post('/orders/', ordersController.createOrder);
+router.post('/orders/', ordersController.createOrder);
 
 // /**
 //  * @route PUT /orders/:orderId
