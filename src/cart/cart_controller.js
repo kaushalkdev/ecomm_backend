@@ -1,4 +1,4 @@
-const CartModel = require('../models/cart_model');
+const CartModel = require('./cart_model');
 
 /**
  * Cart Controller
