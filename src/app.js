@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const productRoute = require('./product/product_route');
 const cartRoute = require('./cart/cart_route');
+const authRoute = require('./auth/auth_route');
 const dbService = require('./services/db_svcs');
 const consts = require('./const');
 const ordersRoute = require('./orders/orders_route');
@@ -35,6 +36,7 @@ app.use(express.json());
 // Use product routes with version control
 app.use(consts.API_BASE_VERSION, productRoute);
 app.use(consts.API_BASE_VERSION, cartRoute);
+app.use(consts.API_BASE_VERSION, authRoute);
 app.use(consts.API_BASE_VERSION, ordersRoute);
 
 /**
